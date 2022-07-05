@@ -32,7 +32,9 @@ Intraction between Director Repo and Primary ECU on Refresh or on Check for new 
 
 ```mermaid
 sequenceDiagram
-    Director_Repo->>Primary_ECU: Downloads timestamp json & snapshot json
+    Director_Repo->>Primary_ECU: Downloads timestamp json
+    Primary_ECU-->>Primary_ECU: Checks expiry date(max 1 day)
+    Director_Repo->>Primary_ECU: Downloads snapshot json
     Primary_ECU-->>Primary_ECU: Verifies timestamp's sha256, length, version matches with snapshot file
     Director_Repo->>Primary_ECU: Downloads targets json
     Primary_ECU-->>Primary_ECU: Verifies version matches with targets file
@@ -42,7 +44,9 @@ If no update it will discard, or if there is any new update it will fetch from i
 
 ```mermaid
 sequenceDiagram
-    Image_Repo->>Primary_ECU: Downloads timestamp json & snapshot json
+    Image_Repo->>Primary_ECU: Downloads timestamp json
+    Primary_ECU-->>Primary_ECU: Checks expiry date(max 1 day)
+    Image_Repo->>Primary_ECU: Downloads snapshot json
     Primary_ECU-->>Primary_ECU: Verifies timestamp's sha256, length, version matches with snapshot file
     Image_Repo->>Primary_ECU: Downloads targets json
     Primary_ECU-->>Primary_ECU: Verifies version matches with targets file
