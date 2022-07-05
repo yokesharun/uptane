@@ -36,6 +36,8 @@ sequenceDiagram
     Primary_ECU-->>Primary_ECU: Checks expiry date(max 1 day)
     Director_Repo->>Primary_ECU: Downloads snapshot json
     Primary_ECU-->>Primary_ECU: Verifies timestamp's sha256, length, version matches with snapshot file
+    Primary_ECU-->>Primary_ECU: Compares and verifies local root json with downloaded snapshot data 
+    Primary_ECU-->>Primary_ECU: (if its not matches it will download root json and start the workflow from first)
     Director_Repo->>Primary_ECU: Downloads targets json
     Primary_ECU-->>Primary_ECU: Verifies version matches with targets file
     Primary_ECU-->>Local_storage: Checks for any new updates with specific to ECU - compares with old local data
