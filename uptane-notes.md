@@ -8,3 +8,4 @@
 - `Target.json` will have 2 hashes sha256, sha512 of the same image file along with the length. Once the images is fully downloaded in the device it will verify the hashes and the version. If the verification fails it will rollback the process and discard the updation.
 - `Timestamp.json` will have sha256 hash, length and version of `snapshot.json` file
 - `Snapshot.json` will have sha256 hashes, lengths and versions of `target.json` and `root.json` files
+- Director repo is maintaining a targets folder under each vehicle. If the update is available for the vehicle they are keeping a copy of it in the director repo vehicle folder. once the update is successfully done. they are cleaning it up.
