@@ -17,3 +17,34 @@
 - Targets will be downloaded in the targets folder of both ECU's
 - Primary ECU will verify the metedata from the OTA's director repo and OTA image repo
 - Secondary ECU will verify the metadata from the unverified folder files and unverified target files will be stored in unverified target folder of secondary ECU. once it got verifies it will be moved out of the folder.
+- While creating primary and secondary local storage - root.json will be added in current folder from OT director and image repo.
+
+
+Pinned json in ECU's storage
+```
+{
+   "delegations":[
+      {
+         "paths":[
+            "*"
+         ],
+         "repositories":[
+            "director",
+            "imagerepo"
+         ]
+      }
+   ],
+   "repositories":{
+      "director":{
+         "mirrors":[
+            "http://localhost:30401/democar"
+         ]
+      },
+      "imagerepo":{
+         "mirrors":[
+            "http://localhost:30301"
+         ]
+      }
+   }
+}
+```
