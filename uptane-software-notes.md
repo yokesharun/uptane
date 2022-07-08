@@ -18,6 +18,7 @@
 - Primary ECU will verify the metedata from the OTA's director repo and OTA image repo
 - Secondary ECU will verify the metadata from the unverified folder files and unverified target files will be stored in unverified target folder of secondary ECU. once it got verifies it will be moved out of the folder.
 - While creating primary and secondary local storage - root.json will be added in current folder from OT director and image repo.
+- snapshot, target, timestamp keyids will be stored along with key threshold in `root.json`. threshold will be stored because we can have multiple signatures for verification
 
 
 Pinned json in ECU's storage
