@@ -8,7 +8,7 @@ eg: public key
       "sha512"
    ],
    "keyval":{
-      "public":"99ef8790687ca252c4677a80a34e401efb7e17ccdf9b0fcb5f1bc3260c432cb9"
+      "public":"fdba7eaa358fa5a8113a789f60c4a6ce29c4478d8d8eff3e27d1d77416696ab2"
    },
    "keytype":"ed25519"
 }
@@ -39,6 +39,9 @@ Each JSON file will have 2 segments `signatures` and `signed`
    ],
 }
 ```
+
+- Root Public key keyval ->> signatures `keyid`
+- Root Private will generate signature ->> signatures `sig`
 
 #### signed
 
