@@ -47,7 +47,10 @@ Each JSON file will have 2 segments `signatures` and `signed`
 
 - `_type` defines the actual role file. here is root
 - `keys` - 4 types of keys for 4 roles along with hash algorithms, key type and key val -> pub of each roles
-- signature->keyid === signed->keys->[] === signed->roles->root->keyid  ----->>> how this key is generated
+- signature->keyid === signed->keys->[] === signed->roles->root->keyid  ----->>> how this key is generated ---->>> A hexadecimal value in '23432df87ab..' format `SCHEMA.RegularExpression(r'[a-fA-F0-9]+')`
+- threshold - no. of keyids pair are there for verification
+- version - no of time the `root.json` file has changed
+- `root.json` file change only if keys or signature is changed
 
 ```
 {
