@@ -45,6 +45,10 @@ Each JSON file will have 2 segments `signatures` and `signed`
 
 #### signed
 
+- `_type` defines the actual role file. here is root
+- `keys` - 4 types of keys for 4 roles along with hash algorithms, key type and key val -> pub of each roles
+- signature->keyid === signed->keys->[] === signed->roles->root->keyid  ----->>> how this key is generated
+
 ```
 {
    "signed":{
