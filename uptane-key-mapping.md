@@ -1,3 +1,5 @@
+## Keys
+
 we need to create public and private keys with ed25519
 
 eg: public key
@@ -24,7 +26,7 @@ Each and very role will have the private and public pair
 
 Each JSON file will have 2 segments `signatures` and `signed`
 
-### ROOT.JSON
+## ROOT.JSON
 
 #### signatures
 
@@ -40,7 +42,7 @@ Each JSON file will have 2 segments `signatures` and `signed`
 }
 ```
 
-- Root Public key keyval ->> signatures `keyid`
+- Root Public key keyval ->> hexa code
 - Root Private will generate signature ->> signatures `sig`
 
 #### signed
@@ -133,3 +135,54 @@ Each JSON file will have 2 segments `signatures` and `signed`
    }
 }
 ```
+
+## TARGET.JSON
+
+#### signature
+
+```
+"signatures": [
+  {
+   "keyid": "630cf584f392430b2119a4395e39624e86f5e5c5374507a789be5cf35bf090d6",
+   "method": "ed25519",
+   "sig": "3bcf3ced34e24c02c1e872d2fe7dc93b01cf2e8474a609231f398c3ca31d3dcaa3a1f32d2c70a89404d981f355dd13f3bf88fc0be89e6ccde14a549e38695900"
+  }
+ ],
+ ```
+- Target keyid ->> hexa code
+- Target Private will generate signature ->> signatures `sig`
+- Target's keyid is stored in `root.json` under signed object
+
+#### Signed
+
+```
+"signed": {
+  "_type": "Targets",
+  "delegations": {
+   "keys": {},
+   "roles": []
+  },
+  "expires": "2022-10-06T13:58:00Z",
+  "targets": {
+   "/ota.txt": {
+    "custom": {
+     "ecu_serial": "TCUdemocar"
+    },
+    "hashes": {
+     "sha256": "0b016a3bc4d9e2b7368497772d958a7a5063ba8bf57cae0a8603ada5aef8ae3f",
+     "sha512": "ea933feee0f5377223e6904d8c8914f5d4ee165bdec15b33189b58d26b9b1b0384c4e785fbf928733d0c1a810b765479455e5ca1c5bb2a1303ce1ad200f11b94"
+    },
+    "length": 18
+   }
+  },
+  "version": 2
+ }
+```
+
+- `_type` defines the actual role file. here is target
+- `targets` - all targets for repo will be stored under this along with target hashes
+- version - no of time the `root.json` file has changed
+- `target.json` file change only if new target is mapped for any ECU and version also changes at that time
+- `targets` -> filename -> custom -> ecu_serial - ECU id where the software needs to be installed
+- `targets` -> filename -> hashes - hash key of the uploaded image in 2 formats sha256 & sha512
+- `targets` -> filename -> length - length of the uploaded file 
