@@ -186,3 +186,96 @@ Each JSON file will have 2 segments `signatures` and `signed`
 - `targets` -> filename -> custom -> ecu_serial - ECU id where the software needs to be installed
 - `targets` -> filename -> hashes - hash key of the uploaded image in 2 formats sha256 & sha512
 - `targets` -> filename -> length - length of the uploaded file 
+
+
+## SNAPSHOT.JSON
+
+#### Signature
+
+```
+"signatures": [
+  {
+   "keyid": "f93cfcf33d335ff43654ec6047e0a18dd5595ee3de53136b94c9c756788a0f97",
+   "method": "ed25519",
+   "sig": "05411d6e42e2193db983c5d1d554ba50bc7f72ce60f6e0c499e3b8979b6058f6968e8d109795669cf49edfc2f1614a3a0cfd9310d5899ff5f8cb878e31d46f0b"
+  }
+ ],
+```
+
+- Snapshot keyid ->> hexa code
+- Snapshot Private key will generate signature ->> signatures `sig`
+- Snapshot's keyid is stored in `root.json` under signed object
+
+#### Signed
+
+```
+"signed": {
+  "_type": "Snapshot",
+  "expires": "2022-07-14T06:30:50Z",
+  "meta": {
+   "root.json": {
+    "hashes": {
+     "sha256": "d80ac46893407d2948efb26a6231e727777a719da3f01a96678bd940222be9cd"
+    },
+    "length": 2120,
+    "version": 1
+   },
+   "targets.json": {
+    "version": 2
+   }
+  },
+  "version": 2
+ }
+```
+
+- `_type` defines the actual role file. here is snapshot
+- `snapshot.json` file will change only if `root.json` or `target.json` changes
+- `meta` -> filename -> hashes - hash key of the uploaded file in sha256 format
+- `meta` -> filename -> length - length of the uploaded file 
+- `meta` -> filename -> version - version of the uploaded file 
+
+
+## TIMESTAMP.JSON
+
+#### Signature
+
+```
+"signatures": [
+  {
+   "keyid": "da9c65c96c5c4072f6984f7aa81216d776aca6664d49cb4dfafbc7119320d9cc",
+   "method": "ed25519",
+   "sig": "8fce77f1d2f20d5ecb4f146ad2cb80af80c6aacd88cf479791d3e60eb778aaf32de0bc72b0302679cbc7aae18ad0362d1e683eae264a46bb06a297a457938800"
+  }
+ ],
+```
+
+- Timestamp keyid ->> hexa code
+- Timestamp Private key will generate signature ->> signatures `sig`
+- Timestamp's keyid is stored in `root.json` under signed object
+
+#### Signed
+
+```
+"signed": {
+  "_type": "Timestamp",
+  "expires": "2022-07-08T06:30:50Z",
+  "meta": {
+   "snapshot.json": {
+    "hashes": {
+     "sha256": "9bd8ef8308e876d44b1ccd491dc81459cb3565baae594152d71da81035cfef53"
+    },
+    "length": 594,
+    "version": 2
+   }
+  },
+  "version": 2
+ }
+```
+
+- `_type` defines the actual role file. here is timestamp
+- `timestamp.json` file will change only if `snapshot.json` changes
+- `meta` -> filename -> hashes - hash key of the uploaded file in sha256 format
+- `meta` -> filename -> length - length of the uploaded file 
+- `meta` -> filename -> version - version of the uploaded file 
+- this file will be first download on verification process
+
