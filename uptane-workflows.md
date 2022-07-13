@@ -26,6 +26,15 @@ graph TD
     A -->C[Secondary ECU]
 ```
 
+#### Verification of json files
+
+```mermaid
+graph TD
+    A[root.json] --> C[snapshot.json]
+    B[target.json] --> C[snapshot.json]
+    C -->D[timestamp.json]
+```
+
 #### Primary ECU Intractions
 
 ### Intraction between Director Repo and Primary ECU on Refresh or on Check for new updates
