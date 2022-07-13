@@ -47,5 +47,5 @@ Pinned json in ECU's storage
          ]
       }
    }
-}
+} 
 ```
