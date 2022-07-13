@@ -101,6 +101,6 @@ graph TD
     B --> |Download metadata & images -after verification-| D[Temp local vehicle storage]
     D --> |fetch's new metadata on refresh and verify metadata again before installation| E[Secondary ECU]
     E --> |Attaching secondary to primary ECU|B
-    E --> |Partial verification|D
+    E --> |Partial verification|D 
     E --> |Installing new image|F[Vehicle]
 ```
