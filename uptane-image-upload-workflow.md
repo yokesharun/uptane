@@ -4,11 +4,9 @@
 flowchart TD
     A[Get STS Token from Backend for S3 Upload] --> B[Image Upload from UI to S3]
     B --> C[After Image is successfully uploaded to S3]
-    C --> D[Lambda function will be triggered and it will call the API with file info]
-    D --> E[API will trigger the metadata generation for image repo and store it in local]
-    E --> F[Next it will trigger the metadata generation for director repo and store it in local]
-    F --> G[Trigger the verification process of both image and director repo and update the status in DB]
-    G --> H[Once the verification is done, it is ready for deployment]
-    H --> I[we can also do the download verification from the backend before the deployment]
-    I --> J[During deployment we will be moving the meta data to live for the download and mark it as new update is available]
+    C --> D[Lambda will be trigged from s3]
+    D --> E[Lambda will trigger the API with data to start the metadata generation process]
+    E --> F[Fetch the details from s3 and generate checksums]
+    F --> G[Once the metadata generated, verification process will be started]
+    G --> H[Once its verified, it is ready to be deployed to live]
 ```
