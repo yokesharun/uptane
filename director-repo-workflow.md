@@ -2,11 +2,21 @@
 
 ```mermaid
 flowchart TD
-    A[Get STS Token from Backend for S3 Upload] --> B[Image Upload from UI to S3]
-    B --> C[After Image is successfully uploaded to S3]
-    C --> D[Lambda will be trigged from s3]
-    D --> E[Lambda will trigger the API with data to start the metadata generation process]
-    E --> F[Fetch the details from s3 and generate checksums]
-    F --> G[Once the metadata generated, verification process will be started]
-    G --> H[Once its verified, it is ready to be deployed to live]
+    A[New vehicle is creation] --> B[Initialize metadata structure for the vehicle with VIN number]
+    B --> C[Upload new image]
+    C --> D[generate metadata in the image repo]
+    D --> E[During deployment update the metadata details in the director repo of the vehicle]
+    E --> F[verify director repo data with the image repo data]
+    F --> G[deploy the image repo and director repo to live]
+    G --> H[Download metadata in the vehicle ECU]
+```
+### Metadata backup
+```mermaid
+flowchart TD
+    A[image repo local metadata] --> C[S3 backup during generation]
+    B[director repo local metadata] --> C
+    C --> D[verify metadata]
+    D --> E[deploy metadata]
+    E --> F[move or sync backup metadata to live]
+    F --> G[Download metadata in the vehicle ECU]
 ```
